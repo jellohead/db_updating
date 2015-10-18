@@ -37,14 +37,13 @@ app.get('/', function(req, res) {
     // handle an error from the connection
     if(handleError(err)) return;
 
-    // record the visit
-    client.query('INSERT INTO visit (date) VALUES ($1)', [new Date()], function(err, result) {
+    client.query('INSERT INTO comments (name, comment) VALUES ($1, $2)', ['Me', 'Another comment'], function(err, result) {
 
       // handle an error from the query
       if(handleError(err)) return;
 
       // get the total number of visits today (including the current visit)
-      client.query('SELECT COUNT(date) AS count FROM visit', function(err, result) {
+      client.query('SELECT COUNT(name) AS count FROM comments', function(err, result) {
 
         // handle an error from the query
         if(handleError(err)) return;
@@ -52,9 +51,10 @@ app.get('/', function(req, res) {
         // return the client to the connection pool for other requests to reuse
         done();
         res.writeHead(200, {'content-type': 'text/plain'});
-        res.end('You are visitor number ' + result.rows[0].count);
+        res.end('There are ' + result.rows[0].count + ' comments posted.');
       });
     });
+
   });
 
 });
