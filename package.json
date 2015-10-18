@@ -1,0 +1,23 @@
+{
+  "name": "db_updating",
+  "version": "1.0.0",
+  "description": "Use React, node, express, and node-postgres module to update a postgresql database.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jellohead/db_updating.git"
+  },
+  "author": "Pat Escalona",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jellohead/db_updating/issues"
+  },
+  "homepage": "https://github.com/jellohead/db_updating#readme",
+  "dependencies": {
+    "pg": "^4.4.3"
+  }
+}
