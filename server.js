@@ -1,9 +1,18 @@
 var http = require('http');
 var pg = require('pg');
-
+var express = require('express');
+var app = express();
+var path = require('path');
+var bodyParser = require ('body-parser');
 var conString = "postgres://postgres:discos@localhost/postgres";
 
-var server = http.createServer(function(req, res) {
+//app.use('/', function(req, res) {
+//  res.sendFile(path.join(__dirname + '/index.html'));
+//});
+
+//app.use('/', express.static(path.join(__dirname, '/')));
+
+app.get('/', function(req, res) {
 
   // get a pg client from the connection pool
   pg.connect(conString, function(err, client, done) {
@@ -47,7 +56,7 @@ var server = http.createServer(function(req, res) {
       });
     });
   });
-});
 
-server.listen(3000);
+});
+app.listen(3000);
 console.log('Web server listening on port 3000...');
