@@ -10,9 +10,9 @@ var conString = "postgres://postgres:discos@localhost/postgres";
 //  res.sendFile(path.join(__dirname + '/index.html'));
 //});
 
-//app.use('/', express.static(path.join(__dirname, '/')));
+app.use('/', express.static(path.join(__dirname, '/')));
 
-app.get('/', function(req, res) {
+app.get('/db', function(req, res) {
 
   // get a pg client from the connection pool
   pg.connect(conString, function(err, client, done) {
