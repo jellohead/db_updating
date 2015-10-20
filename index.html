@@ -6,10 +6,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="./model.js"></script>
 </head>
 
 <body>
   <h2>Welcome to the index!</h2>
+
+    <form className="inputData" method="POST" onsubmit="return postIt()">
+        <input type="text" placeholder="Your name" ref="name" />
+        <input type="text" placeholder="Say something..." ref="comment" />
+        <input type="submit" name="add_to_db" value="Add to database" />
+      </form>
+
   <div id="content"></div>
   <script type="text/jsx">
 
