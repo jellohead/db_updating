@@ -1,11 +1,3 @@
-// function postIt() {
-
-// 	console.log('Clicked the button.');
-// 	var name = this.findDOMNode(this.refs.name).value.trim();
-// 	var comment = this.findDOMNode(this.refs.comment).value.trim();
-// 	console.console.log(name + comment);
-// }
-
 var CommentForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
@@ -15,16 +7,12 @@ var CommentForm = React.createClass({
 
     $.post("/",
             {name: author, comment: text},
-            //$(formData).serialize(),
-            //formData,
+            
             function(data, textStatus, jqXHR) {
                 console.log('POST function from postIt function succeeded!');
                 console.log(data + ' arrived at server!');
             }
         );
-
-
-
 
     if (!text || !author) {
       return;

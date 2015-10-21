@@ -5,22 +5,16 @@ var app = express();
 var path = require('path');
 var bodyParser = require ('body-parser');
 var conString = "postgres://postgres:discos@localhost/postgres";
-var urlencodedParser = bodyParser.urlencoded({ extended: false});
-var jsonParser = bodyParser.json();
-//app.use('/', function(req, res) {
-//  res.sendFile(path.join(__dirname + '/index.html'));
-//});
-
-//app.use('/', express.static(path.join(__dirname, '/')));
 
 app.use(express.static('./'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false}));
 
 app.get('/', function(req, res){
   console.log('GET requested');
-
 });
 
-app.post('/', urlencodedParser, function(req, res) {
+app.post('/', function(req, res) {
   console.log('POST requested');
 
   // get a pg client from the connection pool
@@ -70,4 +64,4 @@ app.post('/', urlencodedParser, function(req, res) {
 
 });
 app.listen(3000);
-console.log('Web server listening on port 3000...');
+console.log('Web server listening at http://localhost:3000');
