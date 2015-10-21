@@ -5,7 +5,8 @@ var app = express();
 var path = require('path');
 var bodyParser = require ('body-parser');
 var conString = "postgres://postgres:discos@localhost/postgres";
-
+var urlencodedParser = bodyParser.urlencoded({ extended: false});
+var jsonParser = bodyParser.json();
 //app.use('/', function(req, res) {
 //  res.sendFile(path.join(__dirname + '/index.html'));
 //});
@@ -19,7 +20,7 @@ app.get('/', function(req, res){
 
 });
 
-app.post('/db', function(req, res) {
+app.post('/', urlencodedParser, function(req, res) {
   console.log('POST requested');
 
   // get a pg client from the connection pool
@@ -45,7 +46,9 @@ app.post('/db', function(req, res) {
     // handle an error from the connection
     if(handleError(err)) return;
 
-    client.query('INSERT INTO comments (name, comment) VALUES ($1, $2)', ['Me', 'Another comment'], function(err, result) {
+    console.log(JSON.stringify(req.body.name) + ' ' + JSON.stringify(req.body.comment));
+
+    client.query('INSERT INTO comments (name, comment) VALUES ($1, $2)', [JSON.stringify(req.body.name), JSON.stringify(req.body.comment)], function(err, result) {
 
       // handle an error from the query
       if(handleError(err)) return;
